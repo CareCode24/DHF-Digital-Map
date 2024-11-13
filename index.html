@@ -29,8 +29,7 @@
     <div id="map"></div>
 
     <!-- Google Maps API with callback to initMap -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap" async>
     </script>
     <script>
         function initMap() {
@@ -122,7 +121,7 @@
 
             // Create markers for the ground floor and store them in the array
             groundFloorData.forEach(function(feature) {
-                var marker = new google.maps.Marker({
+                var marker = new google.maps.marker.AdvancedMarkerElement({
                     position: feature.position,
                     map: map,
                     title: feature.title,
