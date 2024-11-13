@@ -28,13 +28,13 @@ function initMap() {
 
     // Create markers for the ground floor and store them in the array
     groundFloorData.forEach(function(feature) {
-        var marker = new google.maps.Marker({
-            position: feature.position,
-            map: map,
-            title: feature.title
-        });
-        groundFloorMarkers.push(marker);
-    });
+var marker = new google.maps.Marker({
+    position: feature.position,
+    map: map,
+    title: feature.title,
+    icon: 'https://path/to/custom_icon.png' //https://drive.google.com/file/d/1Q9KWTlH4R9aR9TtSOOUjXbLgnTboUR4O/view?usp=sharingL
+});
+
 
     // Create markers for the second floor and store them in the array (initially hidden)
     secondFloorData.forEach(function(feature) {
