@@ -6,21 +6,121 @@
     <title>Deep Hard N' Funky Festival Map</title>
     <style>
         #map {
-            height: 80vh; /* 80% of the viewport height */
-            width: 100%; /* Full width of the page */
+            height: 80vh;
+            width: 100%;
+        }
+        #floor-toggle-controls {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        #floor-toggle-controls button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Deep Hard N' Funky Festival Map</h1>
-    <div id="map"></div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap"></script>
-    <script src="map.js"></script>
     <div id="floor-toggle-controls">
-    <button id="toggleGroundFloor">Ground Floor</button>
-    <button id="toggleSecondFloor">Second Floor</button>
-</div>
-<div id="map" style="height: 80vh; width: 100%;"></div>
+        <button id="toggleGroundFloor">Ground Floor</button>
+        <button id="toggleSecondFloor">Second Floor</button>
+    </div>
+    <div id="map"></div>
 
+    <!-- Google Maps API with callback to initMap -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap">
+    </script>
+    <script>
+        function initMap() {
+            // Define map options and set the initial center point
+            var mapCenter = { lat: -36.8605472, lng: 174.6361861 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: mapCenter
+            });
+
+            // Define arrays to hold markers for each floor
+            var groundFloorMarkers = [];
+            var secondFloorMarkers = [];
+
+            // Data for ground floor features
+            var groundFloorData = [
+                { title: "Arena Stage", position: { lat: -36.8597583, lng: 174.6362528 } },
+                { title: "Arena Bar", position: { lat: -36.8605472, lng: 174.6361861 } },
+                { title: "Arena Water Station 1", position: { lat: -36.8604111, lng: 174.6363028 } },
+                { title: "Arena Water Station 2", position: { lat: -36.8604083, lng: 174.6363028 } },
+                { title: "Arena Entrance Water Station", position: { lat: -36.8601833, lng: 174.6358806 } },
+                { title: "Red Bull Water Station", position: { lat: -36.8604056, lng: 174.6355139 } },
+                { title: "Arena Loo 1", position: { lat: -36.8601917, lng: 174.636025 } },
+                { title: "Arena Loo 2", position: { lat: -36.8602556, lng: 174.6360194 } },
+                { title: "Arena Loo 3", position: { lat: -36.8605694, lng: 174.6362889 } },
+                { title: "Arena Loo 4", position: { lat: -36.8605667, lng: 174.636225 } },
+                { title: "Entry Gate", position: { lat: -36.8591944, lng: 174.635725 } },
+                { title: "Entry", position: { lat: -36.8598111, lng: 174.6358722 } },
+                { title: "Medical", position: { lat: -36.8598806, lng: 174.6354972 } },
+                { title: "Rides", position: { lat: -36.8601306, lng: 174.6353917 } },
+                { title: "Ravewear", position: { lat: -36.860725, lng: 174.6363083 } },
+                { title: "Food 1", position: { lat: -36.8602444, lng: 174.6355806 } },
+                { title: "Food 2", position: { lat: -36.86025, lng: 174.6356667 } },
+                { title: "Outside Loo 1", position: { lat: -36.8599944, lng: 174.6356889 } },
+                { title: "Outside Loo 2", position: { lat: -36.8599972, lng: 174.6356333 } },
+                { title: "Red Bull Stage", position: { lat: -36.8603556, lng: 174.6353694 } },
+                { title: "Door 1", position: { lat: -36.8600417, lng: 174.6360056 } },
+                { title: "Door 2", position: { lat: -36.86035, lng: 174.6359139 } },
+                { title: "Door 3", position: { lat: -36.8605444, lng: 174.6358833 } },
+                { title: "Door 4", position: { lat: -36.8608222, lng: 174.6359417 } }
+            ];
+
+            // Data for second floor features
+            var secondFloorData = [
+                { title: "The George Stage", position: { lat: -36.8607556, lng: 174.6363056 } },
+                { title: "VIP", position: { lat: -36.8606472, lng: 174.6362694 } },
+                { title: "Second Floor Bar", position: { lat: -36.86065, lng: 174.6363861 } },
+                { title: "Second Floor Water Station", position: { lat: -36.86065, lng: 174.6363194 } }
+            ];
+
+            // Create markers for the ground floor and store them in the array
+            groundFloorData.forEach(function(feature) {
+                var marker = new google.maps.Marker({
+                    position: feature.position,
+                    map: map,
+                    title: feature.title,
+                    icon: 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png' // Example icon
+                });
+                groundFloorMarkers.push(marker);
+            });
+
+            // Create markers for the second floor and store them in the array (initially hidden)
+            secondFloorData.forEach(function(feature) {
+                var marker = new google.maps.Marker({
+                    position: feature.position,
+                    map: null,  // Start with the markers hidden
+                    title: feature.title,
+                    icon: 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png' // Example icon
+                });
+                secondFloorMarkers.push(marker);
+            });
+
+            // Add buttons to toggle between ground and second floor
+            document.getElementById('toggleGroundFloor').addEventListener('click', function() {
+                setMapOnAll(groundFloorMarkers, map);
+                setMapOnAll(secondFloorMarkers, null);
+            });
+
+            document.getElementById('toggleSecondFloor').addEventListener('click', function() {
+                setMapOnAll(groundFloorMarkers, null);
+                setMapOnAll(secondFloorMarkers, map);
+            });
+
+            // Function to set markers on the map
+            function setMapOnAll(markers, map) {
+                markers.forEach(function(marker) {
+                    marker.setMap(map);
+                });
+            }
+        }
+    </script>
 </body>
 </html>
