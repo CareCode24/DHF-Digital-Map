@@ -49,7 +49,6 @@
     <div id="map"></div>
 
     <!-- Google Maps API with callback to initMap -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg"></script>
     <script>
         function initMap() {
             var mapCenter = { lat: -36.8605472, lng: 174.6361861 };
@@ -111,13 +110,6 @@
                         "stylers": [
                             { "color": "#D584BA" }
                         ]
-                    },
-                    {
-                        "featureType": "landscape.natural.vegetation",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            { "color": "#D584DA" }
-                        ]
                     }
                 ],
                 { name: "Styled Map" }
@@ -169,7 +161,7 @@
 
             // Create markers for the ground floor and store them in the array
             groundFloorData.forEach(function(feature) {
-                var marker = new google.maps.Marker({
+                var marker = new google.maps.marker.AdvancedMarkerElement({
                     position: feature.position,
                     map: map,
                     title: feature.title,
@@ -189,7 +181,7 @@
 
             // Create markers for the second floor and store them in the array (initially hidden)
             secondFloorData.forEach(function(feature) {
-                var marker = new google.maps.Marker({
+                var marker = new google.maps.marker.AdvancedMarkerElement({
                     position: feature.position,
                     map: null,  // Start with the markers hidden
                     title: feature.title,
@@ -221,11 +213,11 @@
             // Function to set markers on the map
             function setMapOnAll(markers, map) {
                 markers.forEach(function(marker) {
-                    marker.setMap(map);
+                    marker.map = map;
                 });
             }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap" async></script>
 </body>
 </html>
