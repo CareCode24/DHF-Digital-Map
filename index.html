@@ -112,10 +112,9 @@
             ];
 
             // Data for second floor features
-            var secondFloorData = [
-                { title: "The George Stage", position: { lat: -36.8607556, lng: 174.6363056 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/music.png' },
+            -36.8608, lng: 174.6363056 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/music.png' },
                 { title: "VIP", position: { lat: -36.8606472, lng: 174.6362694 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/star.png' },
-                { title: "Second Floor Bar", position: { lat: -36.86065, lng: 174.6363861 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/bar.png' },
+                { -36.8607, lng: 174.6363861 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/bar.png' },
                 { title: "Second Floor Water Station", position: { lat: -36.86065, lng: 174.6363194 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' }
             ];
 
@@ -142,8 +141,8 @@
             // Create markers for the second floor and store them in the array (initially hidden)
             secondFloorData.forEach(function(feature) {
                 var marker = new google.maps.Marker({
-                    position: feature.position,
-                    map: null,  // Start with the markers hidden
+                position: feature.position,
+                map: map,  // Start with the markers hidden
                     title: feature.title,
                     icon: feature.icon
                 });
