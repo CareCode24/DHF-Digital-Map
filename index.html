@@ -130,6 +130,19 @@
             var groundFloorMarkers = [];
             var secondFloorMarkers = [];
 
+            // Allow certain sponsor businesses to be visible on the map
+            var allowedSponsorNames = [
+                "George FM",
+                "Jagermeister",
+                "Pioneer DJ",
+                "The Edge (Radio Station)",
+                "Red Bull",
+                "Two Toes",
+                "Eventbrite",
+                "Our House Entertainment",
+                "Remix Magazine"
+            ];
+
             // Data for ground floor features
             var groundFloorData = [
                 { title: "Arena Stage", position: { lat: -36.8597583, lng: 174.6362528 }, icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png' },
@@ -158,16 +171,13 @@
                 { title: "Door 4", position: { lat: -36.8608222, lng: 174.6359417 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/open-diamond.png' }
             ];
 
-            // Data for second floor features
-            var secondFloorData = [
-                { title: "The George Stage", position: { lat: -36.8607556, lng: 174.6363056 }, icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png' },
-                { title: "VIP", position: { lat: -36.8606472, lng: 174.6362694 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/star.png' },
-                { title: "Second Floor Bar", position: { lat: -36.86065, lng: 174.6363861 }, icon: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png' },
-                { title: "Second Floor Water Station", position: { lat: -36.86065, lng: 174.6363194 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' }
-            ];
+            // Filter ground floor features to only include allowed sponsors
+            var filteredGroundFloorData = groundFloorData.filter(function(feature) {
+                return allowedSponsorNames.includes(feature.title);
+            });
 
             // Create markers for the ground floor and store them in the array
-            groundFloorData.forEach(function(feature) {
+            filteredGroundFloorData.forEach(function(feature) {
                 var marker = new google.maps.Marker({
                     position: feature.position,
                     map: map,
@@ -184,26 +194,6 @@
                 });
 
                 groundFloorMarkers.push(marker);
-            });
-
-            // Create markers for the second floor and store them in the array (initially hidden)
-            secondFloorData.forEach(function(feature) {
-                var marker = new google.maps.Marker({
-                    position: feature.position,
-                    map: null,  // Start with the markers hidden
-                    title: feature.title,
-                    icon: feature.icon
-                });
-                
-                var infoWindow = new google.maps.InfoWindow({
-                    content: '<h3>' + feature.title + '</h3>'
-                });
-
-                marker.addListener('click', function() {
-                    infoWindow.open(map, marker);
-                });
-
-                secondFloorMarkers.push(marker);
             });
 
             // Add buttons to toggle between ground and second floor
