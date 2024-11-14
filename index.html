@@ -130,19 +130,6 @@
             var groundFloorMarkers = [];
             var secondFloorMarkers = [];
 
-            // Allow certain sponsor businesses to be visible on the map
-            var allowedSponsorNames = [
-                "George FM",
-                "Jagermeister",
-                "Pioneer DJ",
-                "The Edge (Radio Station)",
-                "Red Bull",
-                "Two Toes",
-                "Eventbrite",
-                "Our House Entertainment",
-                "Remix Magazine"
-            ];
-
             // Data for ground floor features
             var groundFloorData = [
                 { title: "Arena Stage", position: { lat: -36.8597583, lng: 174.6362528 }, icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png' },
@@ -171,13 +158,8 @@
                 { title: "Door 4", position: { lat: -36.8608222, lng: 174.6359417 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/open-diamond.png' }
             ];
 
-            // Filter ground floor features to only include allowed sponsors
-            var filteredGroundFloorData = groundFloorData.filter(function(feature) {
-                return allowedSponsorNames.includes(feature.title);
-            });
-
             // Create markers for the ground floor and store them in the array
-            filteredGroundFloorData.forEach(function(feature) {
+            groundFloorData.forEach(function(feature) {
                 var marker = new google.maps.Marker({
                     position: feature.position,
                     map: map,
