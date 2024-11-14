@@ -161,7 +161,7 @@
 
             // Create markers for the ground floor and store them in the array
             groundFloorData.forEach(function(feature) {
-                var marker = new google.maps.marker.AdvancedMarkerElement({
+                var marker = new google.maps.Marker({
                     position: feature.position,
                     map: map,
                     title: feature.title,
@@ -181,7 +181,7 @@
 
             // Create markers for the second floor and store them in the array (initially hidden)
             secondFloorData.forEach(function(feature) {
-                var marker = new google.maps.marker.AdvancedMarkerElement({
+                var marker = new google.maps.Marker({
                     position: feature.position,
                     map: null,  // Start with the markers hidden
                     title: feature.title,
@@ -213,7 +213,7 @@
             // Function to set markers on the map
             function setMapOnAll(markers, map) {
                 markers.forEach(function(marker) {
-                    marker.map = map;
+                    marker.setMap(map);
                 });
             }
         }
