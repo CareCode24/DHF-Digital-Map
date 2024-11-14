@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Hard N' Funky Festival Map</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gibson:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Gibson:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Gibson', sans-serif;
@@ -134,97 +134,25 @@
             var groundFloorData = [
                 { title: "Arena Stage", position: { lat: -36.8597583, lng: 174.6362528 }, icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png' },
                 { title: "Red Bull Stage", position: { lat: -36.8603556, lng: 174.6353694 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                { title: "Arena Bar", position: { lat: -36.8605472, lng: 174.6361861 }, icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png' },
-                { title: "Arena Water Station 1", position: { lat: -36.8604111, lng: 174.6363028 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' },
-                { title: "Arena Water Station 2", position: { lat: -36.8604083, lng: 174.6363028 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' },
-                { title: "Arena Entrance Water Station", position: { lat: -36.8601833, lng: 174.6358806 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' },
-                { title: "Red Bull Water Station", position: { lat: -36.8604056, lng: 174.6355139 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' },
-                { title: "Arena Loo 1", position: { lat: -36.8601917, lng: 174.636025 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/toilets.png' },
-                { title: "Arena Loo 2", position: { lat: -36.8602556, lng: 174.6360194 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/toilets.png' },
-                { title: "Arena Loo 3", position: { lat: -36.8605694, lng: 174.6362889 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/toilets.png' },
-                { title: "Arena Loo 4", position: { lat: -36.8605667, lng: 174.636225 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/toilets.png' },
-                { title: "Entry Gate", position: { lat: -36.8591944, lng: 174.635725 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png' },
-                { title: "Entry", position: { lat: -36.8598111, lng: 174.6358722 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png' },
-                { title: "Medical", position: { lat: -36.8598806, lng: 174.6354972 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/hospitals.png' },
-                { title: "Rides", position: { lat: -36.8601306, lng: 174.6353917 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/parks.png' },
-                { title: "Ravewear", position: { lat: -36.860725, lng: 174.6363083 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/shopping.png' },
-                { title: "Food 1", position: { lat: -36.8602444, lng: 174.6355806 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/dining.png' },
-                { title: "Food 2", position: { lat: -36.86025, lng: 174.6356667 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/dining.png' },
-                { title: "Outside Loo 1", position: { lat: -36.8599944, lng: 174.6356889 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/toilets.png' },
-                { title: "Outside Loo 2", position: { lat: -36.8599972, lng: 174.6356333 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/toilets.png' },
-                { title: "Door 1", position: { lat: -36.8600417, lng: 174.6360056 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/open-diamond.png' },
-                { title: "Door 2", position: { lat: -36.86035, lng: 174.6359139 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/open-diamond.png' },
-                { title: "Door 3", position: { lat: -36.8605444, lng: 174.6358833 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/open-diamond.png' },
-                { title: "Door 4", position: { lat: -36.8608222, lng: 174.6359417 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/open-diamond.png' }
-            ];
-
-            // Create markers for the ground floor and store them in the array
-            groundFloorData.forEach(function(feature) {
-                var marker = new google.maps.Marker({
-                    position: feature.position,
-                    map: map,
-                    title: feature.title,
-                    icon: feature.icon
-                });
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: '<h3>' + feature.title + '</h3>'
-                });
-
-                marker.addListener('click', function() {
-                    infoWindow.open(map, marker);
-                });
-
-                groundFloorMarkers.push(marker);
-            });
-
-            // Data for second floor features
-            var secondFloorData = [
-                { title: "The George Stage", position: { lat: -36.8607556, lng: 174.6363056 }, icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png' },
-                { title: "VIP", position: { lat: -36.8606472, lng: 174.6362694 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/star.png' },
-                { title: "Second Floor Bar", position: { lat: -36.86065, lng: 174.6363861 }, icon: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png' },
-                { title: "Second Floor Water Station", position: { lat: -36.86065, lng: 174.6363194 }, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' }
-            ];
-
-            // Create markers for the second floor and store them in the array (initially hidden)
-            secondFloorData.forEach(function(feature) {
-                var marker = new google.maps.Marker({
-                    position: feature.position,
-                    map: null,  // Start with the markers hidden
-                    title: feature.title,
-                    icon: feature.icon
-                });
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: '<h3>' + feature.title + '</h3>'
-                });
-
-                marker.addListener('click', function() {
-                    infoWindow.open(map, marker);
-                });
-
-                secondFloorMarkers.push(marker);
-            });
-
-            // Add buttons to toggle between ground and second floor
-            document.getElementById('toggleGroundFloor').addEventListener('click', function() {
-                setMapOnAll(groundFloorMarkers, map);
-                setMapOnAll(secondFloorMarkers, null);
-            });
-
-            document.getElementById('toggleSecondFloor').addEventListener('click', function() {
-                setMapOnAll(groundFloorMarkers, null);
-                setMapOnAll(secondFloorMarkers, map);
-            });
-
-            // Function to set markers on the map
-            function setMapOnAll(markers, map) {
-                markers.forEach(function(marker) {
-                    marker.setMap(map);
-                });
-            }
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap" async defer></script>
-</body>
-</html>
+                { title: "Arena Bar", position: { lat: -36.8605472, lng: 174.6361861 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Arena Water Station 1", position: { lat: -36.8604111, lng: 174.6363028 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Arena Water Station 2", position: { lat: -36.8604083, lng: 174.6363028 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Arena Entrance Water Station", position: { lat: -36.8601833, lng: 174.6358806 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Red Bull Water Station", position: { lat: -36.8604056, lng: 174.6355139 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Arena Loo 1", position: { lat: -36.8601917, lng: 174.636025 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Arena Loo 2", position: { lat: -36.8602556, lng: 174.6360194 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Arena Loo 3", position: { lat: -36.8605694, lng: 174.6362889 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Arena Loo 4", position: { lat: -36.8605667, lng: 174.636225 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Entry Gate", position: { lat: -36.8591944, lng: 174.635725 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Entry", position: { lat: -36.8598111, lng: 174.6358722 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Medical", position: { lat: -36.8598806, lng: 174.6354972 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Rides", position: { lat: -36.8601306, lng: 174.6353917 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Ravewear", position: { lat: -36.860725, lng: 174.6363083 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Food 1", position: { lat: -36.8602444, lng: 174.6355806 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Food 2", position: { lat: -36.86025, lng: 174.6356667 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Outside Loo 1", position: { lat: -36.8599944, lng: 174.6356889 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Outside Loo 2", position: { lat: -36.8599972, lng: 174.6356333 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Door 1", position: { lat: -36.8600417, lng: 174.6360056 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Door 2", position: { lat: -36.86035, lng: 174.6359139 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Door 3", position: { lat: -36.8605444, lng: 174.6358833 }, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                { title: "Door 4", position: { lat: -36.8608222, lng: 174.6359417
