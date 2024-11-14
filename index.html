@@ -51,7 +51,7 @@
     <!-- Google Maps API with callback to initMap -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg"></script>
     <script>
-        window.initMap = function() {
+        function initMap() {
             var mapCenter = { lat: -36.8605472, lng: 174.6361861 };
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,
@@ -73,22 +73,50 @@
                         "featureType": "road",
                         "elementType": "geometry",
                         "stylers": [
-                            { "color": "#FA7849" }
+                            { "color": "#F196C9" }
                         ]
                     },
                     {
                         "featureType": "water",
                         "elementType": "geometry",
                         "stylers": [
-                            { "color": "#00659E" }
+                            { "color": "#0BA59E" }
                         ]
                     },
                     {
                         "featureType": "road",
-                        "elementType": "labels",
+                        "elementType": "labels.text.fill",
                         "stylers": [
-                            { "visibility": "on" },
-                            { "color": "#264294" }
+                            { "color": "#FFFFFF" },
+                            { "visibility": "on" }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            { "visibility": "off" }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.man_made",
+                        "elementType": "geometry",
+                        "stylers": [
+                            { "color": "#B2A39E" }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural",
+                        "elementType": "geometry",
+                        "stylers": [
+                            { "color": "#D584BA" }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural.vegetation",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            { "color": "#D584DA" }
                         ]
                     }
                 ],
