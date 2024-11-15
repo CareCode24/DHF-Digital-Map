@@ -3,180 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Hard N' Funky Festival Map - Bar Test</title>
+    <title>Deep Hard N' Funky - AdvancedMarker Test</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #B2A39E;
-        }
         #map {
             height: 80vh;
             width: 100%;
-            border: 2px solid #264294;
-        }
-        #floor-toggle-controls {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        #floor-toggle-controls button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #0BA59E;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 5px;
-        }
-        #floor-toggle-controls button:hover {
-            background-color: #1F7083;
-        }
-        .fa-martini-glass {
-            color: #FF0000; /* Color for the bar icon */
         }
     </style>
 </head>
 <body>
-    <div id="floor-toggle-controls">
-        <button id="toggleGroundFloor">Ground Floor</button>
-        <button id="toggleSecondFloor">Second Floor</button>
-    </div>
     <div id="map"></div>
 
-    <!-- Google Maps API with callback to initMap -->
     <script>
         function initMap() {
-            var mapCenter = { lat: -36.8605472, lng: 174.6361861 };
-            var map = new google.maps.Map(document.getElementById('map'), {
+            const mapCenter = { lat: -36.8605472, lng: 174.6361861 };
+            const map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,
                 center: mapCenter,
-                mapTypeId: 'styled_map'
             });
 
-            // Define a custom styled map
-            var styledMapType = new google.maps.StyledMapType(
-                [
-                    {
-                        "featureType": "poi",
-                        "elementType": "labels",
-                        "stylers": [
-                            { "visibility": "off" }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry",
-                        "stylers": [
-                            { "color": "#F196C9" }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [
-                            { "color": "#00659E" }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            { "color": "#FFFFFF" },
-                            { "visibility": "on" }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [
-                            { "visibility": "off" }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape.man_made",
-                        "elementType": "geometry",
-                        "stylers": [
-                            { "color": "#016197" }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape.natural",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            { "color": "#D584BA" }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            { "color": "#D584DA" }
-                        ]
-                    }
-                ],
-                { name: "Styled Map" }
-            );
+            // Create an icon element using FontAwesome for testing
+            const iconElement = document.createElement('i');
+            iconElement.className = 'fa-solid fa-martini-glass fa-2x';
+            iconElement.style.color = '#FF5733';
 
-            // Associate the styled map with the MapTypeId and set it to display
-            map.mapTypes.set('styled_map', styledMapType);
-            map.setMapTypeId('styled_map');
-
-            // Bar marker data for testing
-            var barMarkersData = [
-                { title: "Arena Bar", lat: -36.8605472, lng: 174.6361861 }
-            ];
-
-            // Create the bar markers using AdvancedMarkerElement
-            var barMarkers = [];
-
-            barMarkersData.forEach(function (data) {
-                var iconElement = document.createElement('i');
-                iconElement.className = 'fa-solid fa-martini-glass fa-2x';
-                iconElement.style.color = '#FF5733';
-
-                var marker = new google.maps.marker.AdvancedMarkerElement({
-                    position: { lat: data.lat, lng: data.lng },
+            // Test AdvancedMarkerElement
+            try {
+                const marker = new google.maps.marker.AdvancedMarkerElement({
+                    position: { lat: -36.8605472, lng: 174.6361861 },
                     map: map,
-                    content: iconElement, // Use FontAwesome icon as the marker content
-                    title: data.title
+                    content: iconElement,
+                    title: 'Test Bar Marker'
                 });
 
-                // Add hover and click interaction
-                var infoWindow = new google.maps.InfoWindow({
-                    content: '<h3>' + data.title + '</h3>'
+                // Adding click interaction for marker
+                marker.addEventListener('click', () => {
+                    alert('Test Bar Marker Clicked');
                 });
-
-                marker.addEventListener('mouseover', function () {
-                    infoWindow.open(map, marker);
-                });
-                marker.addEventListener('mouseout', function () {
-                    infoWindow.close();
-                });
-                marker.addEventListener('click', function () {
-                    infoWindow.open(map, marker);
-                });
-
-                barMarkers.push(marker);
-            });
-
-            // Initialize buttons to switch floors (still maintaining this part for completeness)
-            document.getElementById('toggleGroundFloor').addEventListener('click', function () {
-                setMarkersVisibility(barMarkers, true);
-            });
-
-            document.getElementById('toggleSecondFloor').addEventListener('click', function () {
-                setMarkersVisibility(barMarkers, false);
-            });
-
-            function setMarkersVisibility(markers, isVisible) {
-                markers.forEach(function (marker) {
-                    marker.map = isVisible ? map : null;
-                });
+            } catch (error) {
+                console.error("Error with AdvancedMarkerElement:", error);
             }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
