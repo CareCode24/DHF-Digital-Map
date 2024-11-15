@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Hard N' Funky Festival Map</title>
+    <title>Deep Hard N' Funky Festival Map - Bar Test</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -32,12 +33,8 @@
         #floor-toggle-controls button:hover {
             background-color: #1F7083;
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            color: #264294;
-        }
-        p, button {
-            font-weight: 400;
+        .fa-martini-glass {
+            color: #FF0000; /* Color for the bar icon */
         }
     </style>
 </head>
@@ -126,78 +123,56 @@
             map.mapTypes.set('styled_map', styledMapType);
             map.setMapTypeId('styled_map');
 
-            // Combined marker data for both floors
-            var markersData = {
-                ground: [
-                    { title: "Arena Stage", lat: -36.8597583, lng: 174.6362528, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Red Bull Stage", lat: -36.8603556, lng: 174.6353694, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Bar", lat: -36.8605472, lng: 174.6361861, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Water Station 1", lat: -36.8604111, lng: 174.6363028, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Water Station 2", lat: -36.8604083, lng: 174.6363028, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Entrance Water Station", lat: -36.8601833, lng: 174.6358806, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Red Bull Water Station", lat: -36.8604056, lng: 174.6355139, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Loo 1", lat: -36.8601917, lng: 174.636025, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Loo 2", lat: -36.8602556, lng: 174.6360194, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Loo 3", lat: -36.8605694, lng: 174.6362889, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Arena Loo 4", lat: -36.8605667, lng: 174.636225, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Entry Gate", lat: -36.8591944, lng: 174.635725, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Entry", lat: -36.8598111, lng: 174.6358722, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Medical", lat: -36.8598806, lng: 174.6354972, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Rides", lat: -36.8601306, lng: 174.6353917, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Ravewear", lat: -36.860725, lng: 174.6363083, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Food 1", lat: -36.8602444, lng: 174.6355806, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Food 2", lat: -36.86025, lng: 174.6356667, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Outside Loo 1", lat: -36.8599944, lng: 174.6356889, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Outside Loo 2", lat: -36.8599972, lng: 174.6356333, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Door 1", lat: -36.8600417, lng: 174.6360056, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Door 2", lat: -36.86035, lng: 174.6359139, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Door 3", lat: -36.8605444, lng: 174.6358833, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
-                    { title: "Door 4", lat: -36.8608222, lng: 174.6359417, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' }
-                ],
-                second: [
-                    { title: "The George Stage", lat: -36.8607556, lng: 174.6363056, icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png' },
-                    { title: "VIP", lat: -36.8606472, lng: 174.6362694, icon: 'https://maps.google.com/mapfiles/kml/shapes/star.png' },
-                    { title: "Second Floor Bar", lat: -36.86065, lng: 174.6363861, icon: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png' },
-                    { title: "Second Floor Water Station", lat: -36.86065, lng: 174.6363194, icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png' }
-                ]
-            };
+            // Bar marker data for testing
+            var barMarkersData = [
+                { title: "Arena Bar", lat: -36.8605472, lng: 174.6361861 }
+            ];
 
-            // Create markers for both floors
-            var markers = { ground: [], second: [] };
+            // Create the bar markers using AdvancedMarkerElement
+            var barMarkers = [];
 
-            function createMarkers(floor) {
-                markersData[floor].forEach(function (data) {
-                    var marker = new google.maps.marker.AdvancedMarkerElement({
-                        position: { lat: data.lat, lng: data.lng },
-                        map: map,
-                        title: data.title,
-                        icon: data.icon
-                    });
-                    markers[floor].push(marker);
+            barMarkersData.forEach(function (data) {
+                var iconElement = document.createElement('i');
+                iconElement.className = 'fa-solid fa-martini-glass fa-2x';
+                iconElement.style.color = '#FF5733';
+
+                var marker = new google.maps.marker.AdvancedMarkerElement({
+                    position: { lat: data.lat, lng: data.lng },
+                    map: map,
+                    content: iconElement, // Use FontAwesome icon as the marker content
+                    title: data.title
                 });
-            }
 
-            // Initialize ground markers
-            createMarkers('ground');
+                // Add hover and click interaction
+                var infoWindow = new google.maps.InfoWindow({
+                    content: '<h3>' + data.title + '</h3>'
+                });
 
-            // Button event listeners to toggle floors
+                marker.addEventListener('mouseover', function () {
+                    infoWindow.open(map, marker);
+                });
+                marker.addEventListener('mouseout', function () {
+                    infoWindow.close();
+                });
+                marker.addEventListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+
+                barMarkers.push(marker);
+            });
+
+            // Initialize buttons to switch floors (still maintaining this part for completeness)
             document.getElementById('toggleGroundFloor').addEventListener('click', function () {
-                setMarkersVisibility('ground', true);
-                setMarkersVisibility('second', false);
+                setMarkersVisibility(barMarkers, true);
             });
 
             document.getElementById('toggleSecondFloor').addEventListener('click', function () {
-                setMarkersVisibility('ground', false);
-                setMarkersVisibility('second', true);
+                setMarkersVisibility(barMarkers, false);
             });
 
-            function setMarkersVisibility(floor, isVisible) {
-                markers[floor].forEach(function (marker) {
-                    if (isVisible) {
-                        marker.map = map;
-                    } else {
-                        marker.map = null;
-                    }
+            function setMarkersVisibility(markers, isVisible) {
+                markers.forEach(function (marker) {
+                    marker.map = isVisible ? map : null;
                 });
             }
         }
