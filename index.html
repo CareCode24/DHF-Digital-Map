@@ -2,51 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Hard N' Funky - AdvancedMarker Test</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Debugging Map Initialization</title>
     <style>
-        #map {
-            height: 80vh;
-            width: 100%;
-        }
+        #map { height: 80vh; width: 100%; }
     </style>
 </head>
 <body>
     <div id="map"></div>
-
     <script>
         function initMap() {
-            const mapCenter = { lat: -36.8605472, lng: 174.6361861 };
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 18,
-                center: mapCenter,
-            });
-
-            // Create an icon element using FontAwesome for testing
-            const iconElement = document.createElement('i');
-            iconElement.className = 'fa-solid fa-martini-glass fa-2x';
-            iconElement.style.color = '#FF5733';
-
-            // Test AdvancedMarkerElement
+            console.log("initMap function is called"); // Debug log
             try {
-                const marker = new google.maps.marker.AdvancedMarkerElement({
-                    position: { lat: -36.8605472, lng: 174.6361861 },
-                    map: map,
-                    content: iconElement,
-                    title: 'Test Bar Marker'
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -36.8605472, lng: 174.6361861 },
+                    zoom: 18
                 });
-
-                // Adding click interaction for marker
-                marker.addEventListener('click', () => {
-                    alert('Test Bar Marker Clicked');
-                });
+                console.log("Map initialized successfully"); // Debug log
             } catch (error) {
-                console.error("Error with AdvancedMarkerElement:", error);
+                console.error("Error during map initialization:", error);
             }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
