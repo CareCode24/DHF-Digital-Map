@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Debugging Map Initialization</title>
+    <title>Deep Hard N' Funky Festival Map</title>
     <style>
         #map { height: 80vh; width: 100%; }
     </style>
@@ -12,17 +12,93 @@
     <script>
         function initMap() {
             console.log("initMap function is called"); // Debug log
-            try {
-                const map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: -36.8605472, lng: 174.6361861 },
-                    zoom: 18
-                });
-                console.log("Map initialized successfully"); // Debug log
-            } catch (error) {
-                console.error("Error during map initialization:", error);
-            }
+
+            // Create the map with custom styles
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -36.8605472, lng: 174.6361861 },
+                zoom: 18,
+                // Disable Map/Satellite toggle
+                mapTypeControl: false,
+                styles: [
+                    {
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#00659E"  // Background color
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"  // Hides icons like street names
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#FFFFFF"  // Text labels (white)
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "color": "#000000"  // Text stroke (black)
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"  // Hides points of interest
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#0BA59E"  // Land (teal)
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#FA7849"  // Roads (orange)
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#1F7083"  // Water bodies (teal blue)
+                            }
+                        ]
+                    }
+                ],
+                // Other controls you want to keep
+                zoomControl: true, // Keep zoom controls
+                streetViewControl: true, // Keep street view
+                fullscreenControl: true // Keep full screen button
+            });
+
+            console.log("Map initialized successfully"); // Debug log
         }
     </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGXgttzv0oImQKVLnkRyIS-mLu4ZDEEQ&callback=initMap" async defer></script>
+    <!-- Updated to properly load the script asynchronously with `async` and `defer` -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGXgttzv0oImQKVLnkRyIS-mLu4ZDEEQ&callback=initMap" async defer></script>
 </body>
 </html>
