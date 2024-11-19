@@ -17,14 +17,13 @@
             const map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -36.8605472, lng: 174.6361861 },
                 zoom: 18,
-                // Disable Map/Satellite toggle
-                mapTypeControl: false,
+                mapTypeControl: false,  // Disable Map/Satellite toggle
                 styles: [
                     {
                         "elementType": "geometry",
                         "stylers": [
                             {
-                                "color": "#00659E"  // Soft Dark Blue for the land
+                                "color": "#D8C9D1"  // Softer Pale Pink for the land
                             }
                         ]
                     },
@@ -48,7 +47,7 @@
                         "elementType": "labels.text.stroke",
                         "stylers": [
                             {
-                                "color": "#FFFFFF"  // Removing the text stroke (no outline)
+                                "color": "#FFFFFF"  // No text stroke (no outline)
                             }
                         ]
                     },
@@ -57,7 +56,7 @@
                         "elementType": "geometry",
                         "stylers": [
                             {
-                                "color": "#F196C9"  // Softer Pink for land gradient
+                                "color": "#F1C6C6"  // Softer Pink for land gradient
                             }
                         ]
                     },
@@ -66,7 +65,7 @@
                         "elementType": "geometry",
                         "stylers": [
                             {
-                                "color": "#F196C9"  // Softer Orange/Pink for roads
+                                "color": "#F1C6C6"  // Light Pink/Orange for roads
                             }
                         ]
                     },
@@ -75,7 +74,7 @@
                         "elementType": "geometry",
                         "stylers": [
                             {
-                                "color": "#1F7083"  // Muted Teal for water bodies
+                                "color": "#A7D6D6"  // Softer Teal for water
                             }
                         ]
                     },
@@ -84,7 +83,7 @@
                         "elementType": "geometry.fill",
                         "stylers": [
                             {
-                                "color": "#0BA59E"  // Light Teal gradient for water
+                                "color": "#B9E1E1"  // Light Teal for water bodies
                             }
                         ]
                     },
@@ -107,7 +106,7 @@
             console.log("Map initialized successfully"); // Debug log
         }
     </script>
-    <!-- Updated to properly load the script asynchronously with `async` and `defer` -->
+    <!-- Properly load the script asynchronously with async and defer -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGXgttzv0oImQKVLnkRyIS-mLu4ZDEEQ&callback=initMap" async defer></script>
 </body>
 </html>
