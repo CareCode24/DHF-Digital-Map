@@ -124,7 +124,12 @@
             console.log("Map initialized successfully"); // Debug log
         }
     </script>
-    <!-- Properly load the script asynchronously with async and defer -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGXgttzv0oImQKVLnkRyIS-mLu4ZDEEQ&callback=initMap" async defer></script>
+    
+    <!-- Ensure script is loaded properly using async and defer -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGXgttzv0oImQKVLnkRyIS-mLu4ZDEEQ&callback=initMap" 
+    async 
+    defer 
+    type="text/javascript"></script>
+
 </body>
 </html>
