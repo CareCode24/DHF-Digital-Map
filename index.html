@@ -1,150 +1,220 @@
+# Trying again to save the complete HTML code to a text file for sharing
+
+html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Hard N' Funky Festival Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gibson:wght@400;700&display=swap" rel="stylesheet" crossorigin="anonymous">
     <style>
-        #map { height: 80vh; width: 100%; }
+        body {
+            font-family: 'Gibson', sans-serif;
+            background-color: #B2A39E;
+        }
+        #map {
+            height: 80vh;
+            width: 100%;
+            border: 2px solid #264294;
+        }
+        #floor-toggle-controls {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        #floor-toggle-controls button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #0BA59E;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+        }
+        #floor-toggle-controls button:hover {
+            background-color: #1F7083;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: #264294;
+        }
+        p, button {
+            font-weight: 400;
+        }
     </style>
 </head>
 <body>
+    <div id="floor-toggle-controls">
+        <button id="toggleGroundFloor">Ground Floor</button>
+        <button id="toggleSecondFloor">Second Floor</button>
+    </div>
     <div id="map"></div>
+
+    <!-- Google Maps API with callback to initMap -->
     <script>
         function initMap() {
-            console.log("initMap function is called"); // Debug log
-
-            // Create the map with custom styles
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -36.8605472, lng: 174.6361861 },
+            var mapCenter = { lat: -36.8605472, lng: 174.6361861 };
+            var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,
-                mapTypeControl: false,  // Disable Map/Satellite toggle
-                styles: [
-                    {
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#D8C9D1"  // Softer Pale Pink for the land
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.icon",
-                        "stylers": [
-                            {
-                                "visibility": "off"  // Hides icons like street names
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#FFFFFF"  // White text for easy visibility
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.text.stroke",
-                        "stylers": [
-                            {
-                                "color": "#FFFFFF"  // No text stroke (no outline)
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#F1C6C6"  // Softer Pink for land gradient
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#F1C6C6"  // Light Pink/Orange for roads
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.text.fill",
-                        "stylers": [
-                            {
-                                "color": "#FFFFFF"  // White text for road labels
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [
-                            {
-                                "color": "#FFFFFF"  // Remove stroke (no outline) from road labels
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#A7D6D6"  // Softer Teal for water
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            {
-                                "color": "#B9E1E1"  // Light Teal for water bodies
-                            }
-                        ]
-                    },
+                center: mapCenter,
+                mapTypeId: 'styled_map'
+            });
+
+            // Define a custom styled map
+            var styledMapType = new google.maps.StyledMapType(
+                [
                     {
                         "featureType": "poi",
                         "elementType": "labels",
                         "stylers": [
-                            {
-                                "visibility": "off"  // Hides points of interest
-                            }
+                            { "visibility": "off" }
                         ]
                     },
                     {
-                        "featureType": "poi",
+                        "featureType": "road",
                         "elementType": "geometry",
                         "stylers": [
-                            {
-                                "color": "#00659E"  // Blue for stadium and important areas
-                            }
+                            { "color": "#F196C9" }
                         ]
                     },
                     {
-                        "featureType": "administrative",
+                        "featureType": "water",
                         "elementType": "geometry",
                         "stylers": [
-                            {
-                                "color": "#2A3D61"  // Darker faded blue for buildings (stadium area)
-                            }
+                            { "color": "#00659E" }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            { "color": "#FFFFFF" },
+                            { "visibility": "on" }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            { "visibility": "off" }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.man_made",
+                        "elementType": "geometry",
+                        "stylers": [
+                            { "color": "#016197" }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            { "color": "#D584BA" }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            { "color": "#D584DA" }
                         ]
                     }
                 ],
-                // Other controls you want to keep
-                zoomControl: true, // Keep zoom controls
-                streetViewControl: true, // Keep street view
-                fullscreenControl: true // Keep full screen button
+                { name: "Styled Map" }
+            );
+
+            // Associate the styled map with the MapTypeId and set it to display
+            map.mapTypes.set('styled_map', styledMapType);
+            map.setMapTypeId('styled_map');
+
+            // Combined marker data for both floors
+            var markersData = {
+                ground: [
+                    { title: "Arena Stage", lat: -36.8597583, lng: 174.6362528, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Red Bull Stage", lat: -36.8603556, lng: 174.6353694, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Bar", lat: -36.8605472, lng: 174.6361861, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Water Station 1", lat: -36.8604111, lng: 174.6363028, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Water Station 2", lat: -36.8604083, lng: 174.6363028, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Entrance Water Station", lat: -36.8601833, lng: 174.6358806, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Red Bull Water Station", lat: -36.8604056, lng: 174.6355139, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Loo 1", lat: -36.8601917, lng: 174.636025, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Loo 2", lat: -36.8602556, lng: 174.6360194, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Loo 3", lat: -36.8605694, lng: 174.6362889, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Arena Loo 4", lat: -36.8605667, lng: 174.636225, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Entry Gate", lat: -36.8591944, lng: 174.635725, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Entry", lat: -36.8598111, lng: 174.6358722, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Medical", lat: -36.8598806, lng: 174.6354972, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Rides", lat: -36.8601306, lng: 174.6353917, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Ravewear", lat: -36.860725, lng: 174.6363083, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Food 1", lat: -36.8602444, lng: 174.6355806, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Food 2", lat: -36.86025, lng: 174.6356667, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Outside Loo 1", lat: -36.8599944, lng: 174.6356889, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Outside Loo 2", lat: -36.8599972, lng: 174.6356333, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Door 1", lat: -36.8600417, lng: 174.6360056, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Door 2", lat: -36.86035, lng: 174.6359139, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Door 3", lat: -36.8605444, lng: 174.6358833, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' },
+                    { title: "Door 4", lat: -36.8608222, lng: 174.6359417, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' }
+                ],
+                second: [
+                    { title: "The George Stage", lat: -36.8607556, lng: 174.6363056, icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png' },
+                    { title: "VIP", lat: -36.8606472, lng: 174.6362694, icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png' },
+                    { title: "Second Floor Bar", lat: -36.86065, lng: 174.6363861, icon: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png' },
+                    { title: "Second Floor Water Station", lat: -36.86065, lng: 174.6363194, icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' }
+                ]
+            };
+
+            // Create markers for both floors and store them in respective arrays
+            var groundFloorMarkers = createMarkers(markersData.ground, map);
+            var secondFloorMarkers = createMarkers(markersData.second, null);
+
+            // Add buttons to toggle between ground and second floor
+            document.getElementById('toggleGroundFloor').addEventListener('click', function() {
+                setMapOnAll(groundFloorMarkers, map);
+                setMapOnAll(secondFloorMarkers, null);
             });
 
-            console.log("Map initialized successfully"); // Debug log
+            document.getElementById('toggleSecondFloor').addEventListener('click', function() {
+                setMapOnAll(groundFloorMarkers, null);
+                setMapOnAll(secondFloorMarkers, map);
+            });
+
+            // Function to create markers
+            function createMarkers(data, map) {
+                return data.map(function(feature) {
+                    var marker = new google.maps.Marker({
+                        position: { lat: feature.lat, lng: feature.lng },
+                        map: map,
+                        title: feature.title,
+                        icon: feature.icon
+                    });
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: '<h3>' + feature.title + '</h3>'
+                    });
+
+                    marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                    });
+
+                    return marker;
+                });
+            }
+
+            // Function to set markers on the map
+            function setMapOnAll(markers, map) {
+                markers.forEach(function(marker) {
+                    marker.setMap(map);
+                });
+            }
         }
     </script>
-
-    <!-- Correctly load Google Maps API with async and defer -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGXgttzv0oImQKVLnkRyIS-mLu4ZDEEQ&callback=initMap" async defer></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClE1Y55eZnZD7cVEDbvVTyB1hIIhiKMAg&callback=initMap" async defer></script>
 </body>
 </html>
+"""
+
+with open("/mnt/data/DHF_Festival_Map_Complete_v2.html", "w") as file:
+    file.write(html_code)
+
